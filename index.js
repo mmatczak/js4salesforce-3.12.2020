@@ -1,15 +1,25 @@
-// function expression
-// const add = function (a, b) {
-//     return a + b;
-// };
+const person = {
+    name: 'Marek',
 
-// arrow function (aka lambda)
-const add = (a, b) => a + b;
+    sayHello() {
+        console.log(this);
+        setTimeout(
+             () => {
+                console.log(`Hello ${this.name}`)
+            },
+            1000
+        );
 
-console.log(add(4, 3));
+        // JavaScript A-apply B-bind C-call
+        // (() => console.log(`Hello ${this.name}`))();
+        // (function () {
+        //     console.log(`Hello ${this.name}`);
+        // }).call(this);
+        // return `Hello ${this.name}`;
+    }
+};
 
+// person.sayHello();
+// person.sayHi();
 
-// function declaration
-// function add(a, b) {
-//     return a + b;
-// }
+console.log(person.sayHello());
