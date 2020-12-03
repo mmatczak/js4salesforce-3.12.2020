@@ -1,35 +1,45 @@
-const numbers = [
-    1, 2, 4, 7, 8
-];
+class AccountService {
+    getOne(id) {
+        // return fetch(`http://my-server/accounts/${id}`)
+        //     .then(function (response) {
+        //         return response.json();
+        //     });
 
-let names = ['Marek', 'Czarek'];
-
-let people = [{
-    name: 'Marek'
-}];
-
-// names.push('Basia');
-names = [...names, 'Basia'];
-people = [...people];
-names = ['Marek', 'Czarek', 'Basia'];
-
-let sum = 0;
-for (let i = 0; i < numbers.length; i++) {
-    const biggerNumber = numbers[i] + 2;
-    if (biggerNumber > 6) {
-        sum += biggerNumber;
+        return new Promise((resolve, reject) => {
+            setTimeout(function () {
+                if (id < 0) {
+                    reject('Invalid ID');
+                } else {
+                    resolve({
+                        id, name: 'Some Client'
+                    });
+                }
+            }, 1000);
+        });
     }
 }
 
-const biggerNumbers = people
-    .map(person => person.age)
-    .filter(function (biggerNumber) {
-        return biggerNumber > 6;
-    })
-    .reduce((sum, myNum) => sum + myNum, {});
-
-
-console.log(biggerNumbers);
-numbers.forEach((myNumber) => {
-    console.log(myNumber);
-})
+// 1
+const accounts = new AccountService();
+// 2
+accounts.getOne(-1234)
+    .then(
+        function (account) {
+            console.log(account);
+            return {...account, addOn: 'dvfg'};
+        })
+    .catch(
+        function (error) {
+            console.log('from Catch:');
+            console.error(error);
+        });
+// .then(
+//     function (account) {
+//         console.log(account);
+//     },
+//     function (error) {
+//         console.error(error);
+//     }
+// )
+// 3
+// console.log('End');
