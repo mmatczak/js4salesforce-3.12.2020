@@ -1,25 +1,35 @@
-const person = {
-    name: 'Marek',
+const numbers = [
+    1, 2, 4, 7, 8
+];
 
-    sayHello() {
-        console.log(this);
-        setTimeout(
-             () => {
-                console.log(`Hello ${this.name}`)
-            },
-            1000
-        );
+let names = ['Marek', 'Czarek'];
 
-        // JavaScript A-apply B-bind C-call
-        // (() => console.log(`Hello ${this.name}`))();
-        // (function () {
-        //     console.log(`Hello ${this.name}`);
-        // }).call(this);
-        // return `Hello ${this.name}`;
+let people = [{
+    name: 'Marek'
+}];
+
+// names.push('Basia');
+names = [...names, 'Basia'];
+people = [...people];
+names = ['Marek', 'Czarek', 'Basia'];
+
+let sum = 0;
+for (let i = 0; i < numbers.length; i++) {
+    const biggerNumber = numbers[i] + 2;
+    if (biggerNumber > 6) {
+        sum += biggerNumber;
     }
-};
+}
 
-// person.sayHello();
-// person.sayHi();
+const biggerNumbers = people
+    .map(person => person.age)
+    .filter(function (biggerNumber) {
+        return biggerNumber > 6;
+    })
+    .reduce((sum, myNum) => sum + myNum, {});
 
-console.log(person.sayHello());
+
+console.log(biggerNumbers);
+numbers.forEach((myNumber) => {
+    console.log(myNumber);
+})
