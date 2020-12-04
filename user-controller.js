@@ -6,7 +6,7 @@ class UserCtrl {
 
     initializeForm() {
         this.bindToSubmit();
-        this.users.getOne(this.userId)
+        return this.users.getOne(this.userId)
             .then(user => {
                 this.firstName = user.firstName;
                 this.lastName = user.lastName;
@@ -64,4 +64,6 @@ class UserCtrl {
 }
 
 // ESM
-export {UserCtrl};
+// export {UserCtrl};
+// CJS
+module.exports = UserCtrl;
