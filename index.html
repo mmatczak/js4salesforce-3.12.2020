@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>User data</title>
+    <style>
+        h1 {
+            color: red;
+        }
+    </style>
 </head>
 <body>
+<my-paragraph></my-paragraph>
 <form>
     <label for="firstName">First name:</label>
     <input id="firstName">
@@ -12,6 +18,29 @@
     <input id="lastName">
     <button>Save</button>
 </form>
-<script type="module" src="index.js"></script>
+<template id="hello">
+    <h1>Hello World</h1>
+</template>
+<script>
+    class MyParagraph extends HTMLElement {
+        constructor() {
+            super();
+            this.attachShadow({mode: 'open'});
+            const paragraphElement = document.createElement('p');
+            paragraphElement.textContent = 'Hello from my Web Component';
+            this.shadowRoot.append(paragraphElement)
+        }
+    }
+    customElements.define('my-paragraph', MyParagraph);
+
+    // setTimeout(() => {
+    //     const hello = document.querySelector('#hello');
+    //     // document.body.appendChild(hello.content);
+    //     const shadow = document.body.attachShadow({mode: 'open'});
+    //     shadow.appendChild(hello.content);
+    //     // document.body.appendChild(shadow);
+    // }, 1000);
+</script>
+<!--<script type="module" src="index.js"></script>-->
 </body>
 </html>
