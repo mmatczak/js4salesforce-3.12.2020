@@ -1,11 +1,23 @@
 const UserService = require('./user-service');
 
 describe('UserService', () => {
+    let service;
+
+    beforeEach(() => {
+        service = new UserService();
+    });
+
     it('gets John Smith', () => {
         // given
-        const service = new UserService();
+        expect.hasAssertions();
+        const userId = 1234;
         // when
-        // then
-        expect(service).toBeDefined();
+        return service.getOne(userId)
+            .then(user => {
+                // then
+                expect(user.id).toBe(userId);
+                expect(user.firstName).toBe('John');
+                expect(user.lastName).toBe('Smith');
+            })
     });
 });
